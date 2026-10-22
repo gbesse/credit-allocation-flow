@@ -1,0 +1,1 @@
+DESCRIPTION = {'fr': 'Affecter des avoirs aux lignes facturées sans dépasser les capacités', 'en': 'Allocate credits to billed lines without exceeding capacities', 'es': 'Asignar abonos a líneas facturadas sin superar capacidades'}

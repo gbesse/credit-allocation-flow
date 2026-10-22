@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "credit-allocation-flow"
+version = "0.1.0a1"
+description = "FR: Affecter des avoirs aux lignes facturées sans dépasser les capacités | EN: Allocate credits to billed lines without exceeding capacities | ES: Asignar abonos a líneas facturadas sin superar capacidades"
+requires-python = ">=3.11"
+license = "MIT"
+
+[project.scripts]
+credit-allocation-flow = "credit_allocation_flow.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["credit_allocation_flow*"]
