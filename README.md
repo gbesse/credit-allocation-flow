@@ -73,3 +73,9 @@ Pruebas de dominio, casos límite e interfaz FR/EN/ES. CI prueba Python 3.11/3.1
 
 - https://docs.peppol.eu/poacc/billing/3.0/bis/
 - https://github.com/gbesse/invoice-acceptance-contracts
+
+FR : les allocations de plusieurs devises sont totalisées séparément dans allocated_cents_by_currency ; allocated_cents devient null lorsqu’un total unique serait trompeur.
+
+EN: multiple currencies are totaled separately in allocated_cents_by_currency; allocated_cents is null when one total would be misleading.
+
+ES: varias monedas se totalizan por separado en allocated_cents_by_currency; allocated_cents es null cuando un total único sería engañoso.
