@@ -40,4 +40,7 @@ def run(data):
             pushed=send(source,10**18)
             if not pushed:break
             total+=pushed
-    return {'fully_allocated':all(e[2]==0 for e in source_edges),'allocated_cents':total,'allocations':[{'credit':a,'line':b,'cents':e[3]-e[2]} for a,b,e in tracked if e[2]<e[3]],'unallocated':[{'credit':c['id'],'cents':edge[2]} for c,edge in zip(credits,source_edges) if edge[2]],'rejected_eligibility_edges':rejected,'scope':'declared currency/VAT/remaining capacities; no bookkeeping or payment execution'}
+    currencies={c['id']:c['currency'] for c in credits};totals={}
+    for credit,_,edge in tracked:
+        if edge[2]<edge[3]:totals[currencies[credit]]=totals.get(currencies[credit],0)+edge[3]-edge[2]
+    return {'fully_allocated':all(e[2]==0 for e in source_edges),'allocated_cents':total if len(totals)<=1 else None,'allocated_cents_by_currency':totals,'allocations':[{'credit':a,'line':b,'cents':e[3]-e[2]} for a,b,e in tracked if e[2]<e[3]],'unallocated':[{'credit':c['id'],'cents':edge[2]} for c,edge in zip(credits,source_edges) if edge[2]],'rejected_eligibility_edges':rejected,'scope':'declared currency/VAT/remaining capacities; no bookkeeping or payment execution'}

@@ -14,3 +14,6 @@ class DomainTests(unittest.TestCase):
   with self.assertRaises(ValueError):run({'invoice_lines':[line('a'),line('a')],'credits':[]})
  def test_vat_mismatch(self):
   c=credit('c',['a']);c['vat_code']='reduced';self.assertFalse(run({'invoice_lines':[line('a')],'credits':[c]})['fully_allocated'])
+
+ def test_distinct_currency_allocations_not_summed_as_money(self):
+  r=run({'invoice_lines':[line('a',currency='EUR'),line('b',currency='USD')],'credits':[credit('c',['a'],currency='EUR'),credit('d',['b'],currency='USD')]});self.assertIsNone(r['allocated_cents']);self.assertEqual(r['allocated_cents_by_currency'],{'EUR':100,'USD':100})
